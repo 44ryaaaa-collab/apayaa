@@ -1,66 +1,164 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#fff0f6">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>Surat Cinta 💌</title>
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>For Nana 🌙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="bg-layer" id="bgLayer"></div>
+  <!-- Background canvas -->
+  <canvas id="bg-canvas"></canvas>
 
-<div class="card" id="card">
+  <!-- Floating hearts container -->
+  <div id="hearts-container"></div>
 
-  <div class="badge">🌸 surat cinta 🌸</div>
+  <!-- Tap ripple container -->
+  <div id="ripple-container"></div>
 
-  <span class="big-heart">💘</span>
+  <!-- === PAGE 1: INTRO === -->
+  <section class="page" id="page-intro">
+    <div class="moon-wrap">
+      <div class="moon">
+        <div class="moon-crater c1"></div>
+        <div class="moon-crater c2"></div>
+        <div class="moon-crater c3"></div>
+      </div>
+      <div class="moon-glow"></div>
+    </div>
+    <h1 class="title-main">Haii,<br>Sayang~</h1>
+    <p class="subtitle">Ada sesuatu buat kamu ✨</p>
+    <button class="btn-main" id="btn-start" onclick="goToPage('page-letter')">
+      Buka Suratnya 💌
+    </button>
+    <p class="hint-text">ketuk layar untuk magic ✦</p>
+  </section>
 
-  <div class="bubble">
-    Kamu itu bagai<br>
-    <span class="hl">peluru yang tak bertuan</span>...
-    <br><br>
-    tapi entah kenapa,<br>
-    kamu bisa nyasar<br>
-    <span class="hl">tepat di hatiku 🎯</span>
-  </div>
+  <!-- === PAGE 2: LETTER === -->
+  <section class="page hidden" id="page-letter">
+    <div class="envelope-wrap" id="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <span class="env-heart">💛</span>
+        </div>
+      </div>
+      <p class="open-hint">ketuk untuk buka 💌</p>
+    </div>
 
-  <div style="height:16px;"></div>
+    <div class="letter-reveal hidden" id="letter-reveal">
+      <div class="letter-paper">
+        <div class="letter-deco">✦ ✦ ✦</div>
+        <p class="letter-body">
+          Haii sayangkuuu,<br><br>
+          aku mau bilang sesuatu.<br><br>
+          Makasii yaa udah mau <span class="hl">like profile aku di Tele</span>,<br>
+          aku ga nyangka bisa <span class="hl">sejauh ini</span> wkwkwkwk 🥹<br><br>
+          Jadiii...<br>
+          <span class="love-line">I love you more<br>than you know 💛</span>
+        </p>
+        <div class="letter-from">— Arya 🌙</div>
+        <div class="letter-deco">✦ ✦ ✦</div>
+      </div>
+      <button class="btn-main" onclick="goToPage('page-reasons')">Lanjut ➜</button>
+    </div>
+  </section>
 
-  <div class="sticker-row">
-    <div class="sticker" style="animation-delay:0.1s">🔫 peluru</div>
-    <div class="arrow-icon">➜</div>
-    <div class="sticker" style="animation-delay:0.25s">🎯 hati</div>
-    <div class="arrow-icon">➜</div>
-    <div class="sticker" style="animation-delay:0.4s">💥 kena!</div>
-  </div>
+  <!-- === PAGE 3: REASONS === -->
+  <section class="page hidden" id="page-reasons">
+    <h2 class="section-title">Kenapa kamu special? 🌟</h2>
+    <p class="section-sub">Tap setiap bintang</p>
 
-  <div class="dvd">
-    <div class="dvd-line"></div>
-    <span class="dvd-star">✦</span>
-    <div class="dvd-line"></div>
-  </div>
+    <div class="stars-grid" id="stars-grid">
+      <div class="star-item" data-msg="Kamu yang pertama like 💛" onclick="revealStar(this)">
+        <div class="star-icon">⭐</div>
+        <div class="star-label">Berani</div>
+        <div class="star-msg"></div>
+      </div>
+      <div class="star-item" data-msg="Bikin aku senyum terus 😊" onclick="revealStar(this)">
+        <div class="star-icon">🌙</div>
+        <div class="star-label">Manis</div>
+        <div class="star-msg"></div>
+      </div>
+      <div class="star-item" data-msg="Dari Telegram sampai hati aku 💫" onclick="revealStar(this)">
+        <div class="star-icon">💫</div>
+        <div class="star-label">Spesial</div>
+        <div class="star-msg"></div>
+      </div>
+      <div class="star-item" data-msg="Aku selalu mikirin kamu 🌟" onclick="revealStar(this)">
+        <div class="star-icon">✨</div>
+        <div class="star-label">Bersinar</div>
+        <div class="star-msg"></div>
+      </div>
+      <div class="star-item" data-msg="Bikin langit lebih indah 🌌" onclick="revealStar(this)">
+        <div class="star-icon">🌟</div>
+        <div class="star-label">Indah</div>
+        <div class="star-msg"></div>
+      </div>
+      <div class="star-item" data-msg="Aku sayang kamu, Nana 💛" onclick="revealStar(this)">
+        <div class="star-icon">💛</div>
+        <div class="star-label">Dicintai</div>
+        <div class="star-msg"></div>
+      </div>
+    </div>
 
-  <div class="hehe">HEHEHEHEHEH 😆</div>
-  <div class="subtext">(serius deh, beneran sayang kamu)</div>
+    <button class="btn-main" id="btn-next-wish" style="opacity:0;pointer-events:none;" onclick="goToPage('page-wish')">
+      Ada satu lagi ➜
+    </button>
+  </section>
 
-  <div class="facts">
-    <div class="fact-card"><span class="fi">🥰</span>Kamu bikin aku senyum-senyum sendiri</div>
-    <div class="fact-card"><span class="fi">💫</span>Kamu yang paling spesial di alam semesta</div>
-    <div class="fact-card"><span class="fi">🫀</span>Hati aku udah selamanya kamu sewa</div>
-  </div>
+  <!-- === PAGE 4: WISH === -->
+  <section class="page hidden" id="page-wish">
+    <div class="wish-wrap">
+      <div class="wish-star" id="wish-star">🌠</div>
+      <h2 class="section-title">Permintaan Bintang</h2>
+      <p class="wish-desc">Tutup matamu, tiup layar ini,<br>dan buat satu permintaan 🌙</p>
 
-  <button class="love-btn" id="loveBtn">
-    love u soooo much 💌
-  </button>
+      <button class="btn-blow" id="btn-blow" onclick="makeWish()">
+        <span>💨 Tiup!</span>
+      </button>
 
-</div>
+      <div class="wish-result hidden" id="wish-result">
+        <div class="wish-sparkle">✨✨✨</div>
+        <p class="wish-granted">Semoga terkabul ya, Nana~</p>
+        <p class="wish-sub">Arya selalu doain yang terbaik buat kamu 💛</p>
+        <button class="btn-main" onclick="goToPage('page-final')">Terakhir ➜</button>
+      </div>
+    </div>
+  </section>
 
-<script src="script.js"></script>
+  <!-- === PAGE 5: FINAL === -->
+  <section class="page hidden" id="page-final">
+    <div class="final-wrap">
+      <div class="final-moon">🌙</div>
+      <h1 class="final-title">Always &<br>Forever</h1>
+      <p class="final-sub">from Arya to Nana 💛</p>
+
+      <div class="final-quote">
+        "Di antara jutaan bintang di langit,<br>
+        kamu tetap yang paling aku cari."
+      </div>
+
+      <div class="final-hearts">
+        <span class="fh">💛</span>
+        <span class="fh">🌙</span>
+        <span class="fh">✨</span>
+        <span class="fh">🌙</span>
+        <span class="fh">💛</span>
+      </div>
+
+      <button class="btn-replay" onclick="goToPage('page-intro')">
+        Dari Awal Lagi 🔄
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
