@@ -15,9 +15,22 @@ for (let i = 0; i < 32; i++) {
   bg.appendChild(el);
 }
 
-// Confetti burst on button click
+// Confetti burst — works for both mouse click and touch
 function popHearts(e) {
   const shapes = ['💕', '💖', '🌸', '✨', '💝', '⭐', '🩷'];
+
+  // Get position from touch or mouse
+  let x, y;
+  if (e.touches && e.touches.length > 0) {
+    x = e.touches[0].clientX;
+    y = e.touches[0].clientY;
+  } else if (e.changedTouches && e.changedTouches.length > 0) {
+    x = e.changedTouches[0].clientX;
+    y = e.changedTouches[0].clientY;
+  } else {
+    x = e.clientX;
+    y = e.clientY;
+  }
 
   for (let i = 0; i < 28; i++) {
     const el = document.createElement('div');
@@ -25,8 +38,8 @@ function popHearts(e) {
     const angle = Math.random() * 360;
     const dist  = 80 + Math.random() * 160;
     el.style.cssText = `
-      left: ${e.clientX}px;
-      top: ${e.clientY}px;
+      left: ${x}px;
+      top: ${y}px;
       font-size: ${14 + Math.random() * 16}px;
       --tx: ${Math.cos(angle * Math.PI / 180) * dist}px;
       --ty: ${Math.sin(angle * Math.PI / 180) * dist}px;
@@ -45,5 +58,10 @@ function popHearts(e) {
   setTimeout(() => card.style.transform = 'scale(1)', 200);
 }
 
-// Attach button listener
-document.getElementById('loveBtn').addEventListener('click', popHearts);
+// Attach both click (desktop) and touchend (mobile)
+const btn = document.getElementById('loveBtn');
+btn.addEventListener('click', popHearts);
+btn.addEventListener('touchend', function(e) {
+  e.preventDefault(); // prevent ghost click on mobile
+  popHearts(e);
+});

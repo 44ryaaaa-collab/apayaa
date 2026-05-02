@@ -259,3 +259,101 @@ body {
   0%   { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
   100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--r)) scale(0.4); }
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start;
+    padding: 24px 0 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .card {
+    padding: 32px 24px 30px;
+    border-radius: 28px;
+    width: 92vw;
+    margin: 0 auto;
+  }
+
+  .badge {
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    padding: 5px 14px;
+  }
+
+  .big-heart {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .bubble {
+    font-size: 16px;
+    padding: 14px 16px;
+    line-height: 1.75;
+  }
+
+  .sticker-row {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sticker {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .arrow-icon {
+    font-size: 14px;
+  }
+
+  .hehe {
+    font-size: 18px;
+  }
+
+  .subtext {
+    font-size: 12px;
+  }
+
+  .facts {
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .fact-card {
+    font-size: 11px;
+    padding: 8px 10px;
+    min-width: 80px;
+    max-width: none;
+    flex: 1 1 calc(33% - 8px);
+  }
+
+  .fact-card .fi {
+    font-size: 16px;
+  }
+
+  .love-btn {
+    font-size: 14px;
+    padding: 13px 28px;
+    margin-top: 20px;
+    /* bigger tap target for mobile */
+    min-height: 48px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .bubble { font-size: 14px; }
+  .sticker-row { gap: 4px; }
+  .sticker { font-size: 11px; padding: 4px 8px; }
+  .facts { flex-direction: column; align-items: stretch; }
+  .fact-card { max-width: 100%; flex: unset; }
+}
+
+/* Touch active state (no hover on mobile) */
+@media (hover: none) {
+  .love-btn:hover { transform: none; box-shadow: 0 4px 18px rgba(220, 100, 140, 0.28); }
+  .love-btn:active { transform: scale(0.96); }
+}
