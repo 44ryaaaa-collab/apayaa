@@ -1,164 +1,153 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>For Nana 🌙</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Nana 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background canvas -->
-  <canvas id="bg-canvas"></canvas>
+<!-- Hidden YouTube player -->
+<iframe id="yt-player"
+  src="https://www.youtube.com/embed/iryd1kZGGH4?enablejsapi=1&autoplay=0"
+  allow="autoplay"
+  frameborder="0">
+</iframe>
 
-  <!-- Floating hearts container -->
-  <div id="hearts-container"></div>
+<!-- Floating hearts -->
+<div id="hearts-bg"></div>
 
-  <!-- Tap ripple container -->
-  <div id="ripple-container"></div>
+<div class="page">
 
-  <!-- === PAGE 1: INTRO === -->
-  <section class="page" id="page-intro">
-    <div class="moon-wrap">
-      <div class="moon">
-        <div class="moon-crater c1"></div>
-        <div class="moon-crater c2"></div>
-        <div class="moon-crater c3"></div>
-      </div>
-      <div class="moon-glow"></div>
+  <!-- HERO -->
+  <div class="hero">
+    <span class="crown">👑</span>
+    <p class="hero-sub">Untuk yang paling istimewa</p>
+    <h1>Hei, <span>Nana</span> 🌸</h1>
+    <div class="divider"><span>♡</span></div>
+    <p class="hero-quote">"Di antara jutaan bintang di langit, aku selalu mencari yang paling bersinar — dan itulah kamu."</p>
+  </div>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-section">
+    <div class="music-label">
+      <h2>🎵 Lagu untuk kamu</h2>
+      <p>diputar khusus malam ini</p>
     </div>
-    <h1 class="title-main">Haii,<br>Sayang~</h1>
-    <p class="subtitle">Ada sesuatu buat kamu ✨</p>
-    <button class="btn-main" id="btn-start" onclick="goToPage('page-letter')">
-      Buka Suratnya 💌
-    </button>
-    <p class="hint-text">ketuk layar untuk magic ✦</p>
-  </section>
+    <div class="player-card">
+      <div class="album-art" id="albumArt">🌸</div>
+      <div class="track-info">
+        <div class="track-title">Ah</div>
+        <div class="track-artist">Nadin Amizah</div>
+        <div class="track-note">karena kamu bikin aku merasa — Ah~ 🥺</div>
+      </div>
+      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+    </div>
+  </div>
 
-  <!-- === PAGE 2: LETTER === -->
-  <section class="page hidden" id="page-letter">
-    <div class="envelope-wrap" id="envelope-wrap">
-      <div class="envelope" id="envelope">
-        <div class="envelope-flap"></div>
-        <div class="envelope-body">
-          <span class="env-heart">💛</span>
+  <!-- REASONS -->
+  <div class="section">
+    <div class="section-title">💌 Alasan aku suka kamu</div>
+    <p class="section-desc">dari hati yang tulus</p>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <span class="reason-icon">😊</span>
+        <h3>Senyumanmu</h3>
+        <p>Setiap kali kamu senyum, dunia rasanya lebih cerah dari biasanya.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">🌙</span>
+        <h3>Cara kamu bicara</h3>
+        <p>Suaramu adalah lagu favorit yang tak pernah bosen aku dengarkan.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">🌺</span>
+        <h3>Hati yang baik</h3>
+        <p>Kamu punya kebaikan yang tulus — dan itu yang paling bikin aku jatuh cinta.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">✨</span>
+        <h3>Kamu apa adanya</h3>
+        <p>Tak perlu jadi siapa pun selain dirimu — karena versi itulah yang aku cinta.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">🤗</span>
+        <h3>Kehangatan kamu</h3>
+        <p>Di dekat kamu, aku selalu merasa aman dan nyaman seperti di rumah.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">🌷</span>
+        <h3>Segala hal kecil</h3>
+        <p>Hal-hal kecil yang kamu lakukan — semuanya membekas di hatiku.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORIES -->
+  <div class="section">
+    <div class="section-title">📸 Kenangan yang selalu aku ingat</div>
+    <p class="section-desc">momen yang terukir indah</p>
+    <div class="memories-list">
+      <div class="memory-item">
+        <div class="memory-num">1</div>
+        <div class="memory-content">
+          <h4>Pertama kali kita bicara</h4>
+          <p>Aku masih ingat bagaimana rasanya — sedikit gugup, tapi bahagia. Sejak saat itu semuanya berbeda.</p>
         </div>
       </div>
-      <p class="open-hint">ketuk untuk buka 💌</p>
-    </div>
-
-    <div class="letter-reveal hidden" id="letter-reveal">
-      <div class="letter-paper">
-        <div class="letter-deco">✦ ✦ ✦</div>
-        <p class="letter-body">
-          Haii sayangkuuu,<br><br>
-          aku mau bilang sesuatu.<br><br>
-          Makasii yaa udah mau <span class="hl">like profile aku di Tele</span>,<br>
-          aku ga nyangka bisa <span class="hl">sejauh ini</span> wkwkwkwk 🥹<br><br>
-          Jadiii...<br>
-          <span class="love-line">I love you more<br>than you know 💛</span>
-        </p>
-        <div class="letter-from">— Arya 🌙</div>
-        <div class="letter-deco">✦ ✦ ✦</div>
+      <div class="memory-item">
+        <div class="memory-num">2</div>
+        <div class="memory-content">
+          <h4>Tawa kamu yang lepas</h4>
+          <p>Ada satu momen waktu kamu tertawa lepas — dan aku diam-diam berjanji untuk terus bikin kamu tertawa.</p>
+        </div>
       </div>
-      <button class="btn-main" onclick="goToPage('page-reasons')">Lanjut ➜</button>
-    </div>
-  </section>
-
-  <!-- === PAGE 3: REASONS === -->
-  <section class="page hidden" id="page-reasons">
-    <h2 class="section-title">Kenapa kamu special? 🌟</h2>
-    <p class="section-sub">Tap setiap bintang</p>
-
-    <div class="stars-grid" id="stars-grid">
-      <div class="star-item" data-msg="Kamu yang pertama like 💛" onclick="revealStar(this)">
-        <div class="star-icon">⭐</div>
-        <div class="star-label">Berani</div>
-        <div class="star-msg"></div>
+      <div class="memory-item">
+        <div class="memory-num">3</div>
+        <div class="memory-content">
+          <h4>Momen-momen biasa bersama kamu</h4>
+          <p>Hal-hal sederhana seperti ngobrol bareng, jalan-jalan, atau sekadar diam bersama — semuanya terasa sempurna.</p>
+        </div>
       </div>
-      <div class="star-item" data-msg="Bikin aku senyum terus 😊" onclick="revealStar(this)">
-        <div class="star-icon">🌙</div>
-        <div class="star-label">Manis</div>
-        <div class="star-msg"></div>
-      </div>
-      <div class="star-item" data-msg="Dari Telegram sampai hati aku 💫" onclick="revealStar(this)">
-        <div class="star-icon">💫</div>
-        <div class="star-label">Spesial</div>
-        <div class="star-msg"></div>
-      </div>
-      <div class="star-item" data-msg="Aku selalu mikirin kamu 🌟" onclick="revealStar(this)">
-        <div class="star-icon">✨</div>
-        <div class="star-label">Bersinar</div>
-        <div class="star-msg"></div>
-      </div>
-      <div class="star-item" data-msg="Bikin langit lebih indah 🌌" onclick="revealStar(this)">
-        <div class="star-icon">🌟</div>
-        <div class="star-label">Indah</div>
-        <div class="star-msg"></div>
-      </div>
-      <div class="star-item" data-msg="Aku sayang kamu, Nana 💛" onclick="revealStar(this)">
-        <div class="star-icon">💛</div>
-        <div class="star-label">Dicintai</div>
-        <div class="star-msg"></div>
+      <div class="memory-item">
+        <div class="memory-num">4</div>
+        <div class="memory-content">
+          <h4>Hari ini dan seterusnya</h4>
+          <p>Masih banyak kenangan indah yang ingin aku ciptakan bersamamu, Nana. Satu per satu, pelan-pelan. 🌸</p>
+        </div>
       </div>
     </div>
+  </div>
 
-    <button class="btn-main" id="btn-next-wish" style="opacity:0;pointer-events:none;" onclick="goToPage('page-wish')">
-      Ada satu lagi ➜
-    </button>
-  </section>
-
-  <!-- === PAGE 4: WISH === -->
-  <section class="page hidden" id="page-wish">
-    <div class="wish-wrap">
-      <div class="wish-star" id="wish-star">🌠</div>
-      <h2 class="section-title">Permintaan Bintang</h2>
-      <p class="wish-desc">Tutup matamu, tiup layar ini,<br>dan buat satu permintaan 🌙</p>
-
-      <button class="btn-blow" id="btn-blow" onclick="makeWish()">
-        <span>💨 Tiup!</span>
-      </button>
-
-      <div class="wish-result hidden" id="wish-result">
-        <div class="wish-sparkle">✨✨✨</div>
-        <p class="wish-granted">Semoga terkabul ya, Nana~</p>
-        <p class="wish-sub">Arya selalu doain yang terbaik buat kamu 💛</p>
-        <button class="btn-main" onclick="goToPage('page-final')">Terakhir ➜</button>
-      </div>
+  <!-- LOVE METER -->
+  <div class="section">
+    <div class="section-title">💗 Seberapa besar cintaku?</div>
+    <p class="section-desc">diukur dari kedalaman hati</p>
+    <div class="love-meter">
+      <p class="meter-label">Cinta untuk Nana</p>
+      <div class="meter-bar-bg"><div class="meter-bar-fill"></div></div>
+      <div class="meter-value">∞ <span class="sparkle">💕</span></div>
+      <p class="meter-note">Tidak cukup angka untuk mengukurnya~</p>
     </div>
-  </section>
+  </div>
 
-  <!-- === PAGE 5: FINAL === -->
-  <section class="page hidden" id="page-final">
-    <div class="final-wrap">
-      <div class="final-moon">🌙</div>
-      <h1 class="final-title">Always &<br>Forever</h1>
-      <p class="final-sub">from Arya to Nana 💛</p>
+  <!-- CLOSING -->
+  <div class="closing">
+    <span class="closing-heart">💖</span>
+    <h2>Untuk Nana tersayang,</h2>
+    <p>Terima kasih sudah menjadi bagian dari hidupku. Kamu bukan sekadar pacar — kamu adalah rumah, ketenangan, dan alasanku tersenyum setiap harinya.</p>
+    <p>Aku sayang kamu, lebih dari yang bisa aku ungkapkan dengan kata-kata.</p>
+    <div class="divider"><span>♡</span></div>
+    <p class="signature">dengan cinta yang tak terbatas 🌹</p>
+  </div>
 
-      <div class="final-quote">
-        "Di antara jutaan bintang di langit,<br>
-        kamu tetap yang paling aku cari."
-      </div>
+</div>
 
-      <div class="final-hearts">
-        <span class="fh">💛</span>
-        <span class="fh">🌙</span>
-        <span class="fh">✨</span>
-        <span class="fh">🌙</span>
-        <span class="fh">💛</span>
-      </div>
+<!-- FAB -->
+<button class="fab" onclick="burstPetals()" title="Kejutan!">🌸</button>
 
-      <button class="btn-replay" onclick="goToPage('page-intro')">
-        Dari Awal Lagi 🔄
-      </button>
-    </div>
-  </section>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
