@@ -1,153 +1,45 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Nana 🌸</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear My Bini 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Floating hearts -->
-<div id="hearts-bg"></div>
+  <canvas id="starCanvas"></canvas>
+  <div class="sparkles" id="sparkles"></div>
 
-<div class="page">
+  <div class="content">
+    <div class="moon">🌙</div>
+    <div class="title">Dear My Bini</div>
+    <div class="subtitle">✦ a message from the stars ✦</div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <span class="crown">👑</span>
-    <p class="hero-sub">Untuk yang paling istimewa</p>
-    <h1>Hei, <span>Nana</span> 🌸</h1>
-    <div class="divider"><span>♡</span></div>
-    <p class="hero-quote">"Di antara jutaan bintang di langit, aku selalu mencari yang paling bersinar — dan itulah kamu."</p>
-  </div>
-
-  <!-- MUSIC PLAYER -->
-  <div class="music-section">
-    <div class="music-label">
-      <h2>🎵 Lagu untuk kamu</h2>
-      <p>karena kamu bikin aku merasa — dicintai secara ugal-ugalan 🥺</p>
-    </div>
-    <div class="player-card">
-      <div class="album-art" id="albumArt">🌸</div>
-      <div class="track-info">
-        <div class="track-title">Ah</div>
-        <div class="track-artist">Nadin Amizah</div>
-        <div class="track-note">buat kamu yang selalu bikin aku nyaman.🌸</div>
+    <div class="card">
+      <div class="message">
+        Di antara jutaan bintang di langit,<br>
+        kamu adalah yang paling bersinar untukku. 🌟
       </div>
-      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
-    </div>
-  </div>
-
-  <!-- Hidden YouTube player -->
-  <iframe id="yt-player"
-    src="https://www.youtube.com/embed/3rf16_Q77WQ?enablejsapi=1&autoplay=0"
-    allow="autoplay"
-    frameborder="0">
-  </iframe>
-
-  <!-- REASONS -->
-  <div class="section">
-    <div class="section-title">💌 Alasan aku suka kamu</div>
-    <p class="section-desc">dari hati yang tulus</p>
-    <div class="reasons-grid">
-      <div class="reason-card">
-        <span class="reason-icon">😊</span>
-        <h3>Senyumanmu</h3>
-        <p>Setiap kali kamu senyum, dunia rasanya lebih cerah dari biasanya.</p>
+      <div class="big-message">Aku sayang kamu</div>
+      <div class="message">
+        Setiap malam aku melihat bintang-bintang ini,<br>
+        aku selalu ingat betapa beruntungnya aku<br>
+        memiliki kamu di hidupku. 💫
       </div>
-      <div class="reason-card">
-        <span class="reason-icon">🌙</span>
-        <h3>Cara kamu bicara</h3>
-        <p>Suaramu adalah lagu favorit yang tak pernah bosen aku dengarkan.</p>
-      </div>
-      <div class="reason-card">
-        <span class="reason-icon">🌺</span>
-        <h3>Hati yang baik</h3>
-        <p>Kamu punya kebaikan yang tulus — dan itu yang paling bikin aku jatuh cinta.</p>
-      </div>
-      <div class="reason-card">
-        <span class="reason-icon">✨</span>
-        <h3>Kamu apa adanya</h3>
-        <p>Tak perlu jadi siapa pun selain dirimu — karena versi itulah yang aku cinta.</p>
-      </div>
-      <div class="reason-card">
-        <span class="reason-icon">🤗</span>
-        <h3>Kehangatan kamu</h3>
-        <p>Di dekat kamu, aku selalu merasa aman dan nyaman seperti di rumah.</p>
-      </div>
-      <div class="reason-card">
-        <span class="reason-icon">🌷</span>
-        <h3>Segala hal kecil</h3>
-        <p>Hal-hal kecil yang kamu lakukan — semuanya membekas di hatiku.</p>
+      <div class="hearts">
+        <span class="heart">💗</span>
+        <span class="heart">💕</span>
+        <span class="heart">💖</span>
       </div>
     </div>
+
+    <button class="btn" onclick="sendLove()">Kirim Bintang Jatuh ✨</button>
   </div>
 
-  <!-- MEMORIES -->
-  <div class="section">
-    <div class="section-title">📸 Kenangan yang selalu aku ingat</div>
-    <p class="section-desc">momen yang terukir indah</p>
-    <div class="memories-list">
-      <div class="memory-item">
-        <div class="memory-num">1</div>
-        <div class="memory-content">
-          <h4>Pertama kali kita bicara</h4>
-          <p>Aku masih ingat bagaimana rasanya — sedikit gugup, tapi bahagia. Sejak saat itu semuanya berbeda.</p>
-        </div>
-      </div>
-      <div class="memory-item">
-        <div class="memory-num">2</div>
-        <div class="memory-content">
-          <h4>Tawa kamu yang lepas</h4>
-          <p>Ada satu momen waktu kamu tertawa lepas — dan aku diam-diam berjanji untuk terus bikin kamu tertawa.</p>
-        </div>
-      </div>
-      <div class="memory-item">
-        <div class="memory-num">3</div>
-        <div class="memory-content">
-          <h4>Momen-momen biasa bersama kamu</h4>
-          <p>Hal-hal sederhana seperti ngobrol bareng, jalan-jalan, atau sekadar diam bersama — semuanya terasa sempurna.</p>
-        </div>
-      </div>
-      <div class="memory-item">
-        <div class="memory-num">4</div>
-        <div class="memory-content">
-          <h4>Hari ini dan seterusnya</h4>
-          <p>Masih banyak kenangan indah yang ingin aku ciptakan bersamamu, Nana. Satu per satu, pelan-pelan. 🌸</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LOVE METER -->
-  <div class="section">
-    <div class="section-title">💗 Seberapa besar cintaku?</div>
-    <p class="section-desc">diukur dari kedalaman hati</p>
-    <div class="love-meter">
-      <p class="meter-label">Cinta untuk Nana</p>
-      <div class="meter-bar-bg"><div class="meter-bar-fill"></div></div>
-      <div class="meter-value">∞ <span class="sparkle">💕</span></div>
-      <p class="meter-note">Tidak cukup angka untuk mengukurnya~</p>
-    </div>
-  </div>
-
-  <!-- CLOSING -->
-  <div class="closing">
-    <span class="closing-heart">💖</span>
-    <h2>Untuk Nana tersayang,</h2>
-    <p>Terima kasih sudah menjadi bagian dari hidupku. Kamu bukan sekadar orang yang selalu nemenin aku — kamu adalah rumah, ketenangan, dan alasanku tersenyum setiap harinya.</p>
-    <p>Aku sayang kamu, lebih dari yang bisa aku ungkapkan dengan kata-kata.</p>
-    <div class="divider"><span>♡</span></div>
-    <p class="signature">dengan cinta yang tak terbatas 🌹</p>
-  </div>
-
-</div>
-
-<!-- FAB -->
-<button class="fab" onclick="burstPetals()" title="Kejutan!">🌸</button>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
