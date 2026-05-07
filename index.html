@@ -2,42 +2,82 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dear My Bini 💕</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Buat Sayang-ku 🐰</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <canvas id="starCanvas"></canvas>
-  <div class="sparkles" id="sparkles"></div>
+  <div class="floating-layer" id="floatLayer"></div>
 
-  <div class="content">
-    <div class="moon">🌙</div>
-    <div class="title">Dear My Bini</div>
-    <div class="subtitle">✦ a message from the stars ✦</div>
+  <div class="container">
 
-    <div class="card">
-      <div class="message">
-        Di antara jutaan bintang di langit,<br>
-        kamu adalah yang paling bersinar untukku. 🌟
-      </div>
-      <div class="big-message">Aku sayang kamu</div>
-      <div class="message">
-        Setiap malam aku melihat bintang-bintang ini,<br>
-        aku selalu ingat betapa beruntungnya aku<br>
-        memiliki kamu di hidupku. 💫
-      </div>
-      <div class="hearts">
-        <span class="heart">💗</span>
-        <span class="heart">💕</span>
-        <span class="heart">💖</span>
-      </div>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="bunny-dance">🐰</div>
+      <div class="title">Buat Sayang-ku~</div>
+      <div class="subtitle">✨ Website paling cute se-dunia! ✨</div>
     </div>
 
-    <button class="btn" onclick="sendLove()">Kirim Bintang Jatuh ✨</button>
+    <!-- BUNNY PARADE -->
+    <div class="bunny-scene">
+      <div class="scene-ground">
+        <span class="b1">🐇</span>
+        <span class="b2">🐰</span>
+        <span class="b3">🐇</span>
+        <span class="b4">🐰</span>
+        <span class="b1" style="font-size:26px">🐇</span>
+      </div>
+      <div class="scene-text">Kelinci parade khusus buat kamu~! 🎉</div>
+    </div>
+
+    <!-- REASONS -->
+    <div class="reasons">
+      <div class="reasons-title">🌸 Alasan kamu = kelinci impianku</div>
+      <div class="reason"><span class="ri">🐰</span> Telingamu nggak sepanjang telinga kelinci, tapi lebih cute!</div>
+      <div class="reason"><span class="ri">🥕</span> Wortel favorit kelinci, tapi favoritku? Kamu dong!</div>
+      <div class="reason"><span class="ri">💨</span> Kelinci lari kencang, kamu lari langsung ke hatiku~</div>
+      <div class="reason"><span class="ri">💤</span> Tidur pun pasti gemes kayak kelinci tidur siang</div>
+      <div class="reason"><span class="ri">🎀</span> Nggak punya bulu tapi paling fluffy di hidupku!</div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-card">
+      <div class="quiz-q">🐰 Kamu kelinci jenis apa?</div>
+      <span class="quiz-emoji" id="quizEmoji">🤔</span>
+      <div class="quiz-opts">
+        <button class="quiz-btn" onclick="quizAns('🐰 Kelinci Fluffy! Super gemas, semua mau peluk terus!','🐰')">🐰 Kelinci Fluffy</button>
+        <button class="quiz-btn" onclick="quizAns('🐇 Kelinci Lompat! Energinya nggak ada matinya!','🐇')">🐇 Kelinci Lompat</button>
+        <button class="quiz-btn" onclick="quizAns('🥕 Kelinci Wortel! Manis banget, bikin gigi sakit cinta!','🥕')">🥕 Kelinci Wortel</button>
+        <button class="quiz-btn" onclick="quizAns('🌸 Kelinci Bunga! Cantik, harum, bikin hari berwarna!','🌸')">🌸 Kelinci Bunga</button>
+      </div>
+      <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <!-- LOVE METER -->
+    <div class="meter-card">
+      <div class="meter-title">💖 Cintameter™ 💖</div>
+      <div class="meter-bar-bg">
+        <div class="meter-bar" id="loveBar"><span>🐰</span></div>
+      </div>
+      <div class="meter-pct" id="lovePct">0%</div>
+      <div class="meter-desc" id="loveDesc">Tekan tombol untuk mengukur cinta~</div>
+      <button class="big-btn" onclick="measureLove()">🐰 Ukur Cinta! 🐰</button>
+    </div>
+
+    <!-- COMPLIMENT MACHINE -->
+    <div class="compliment-card">
+      <div class="comp-title">🎀 Mesin Pujian Kelinci 🎀</div>
+      <div class="comp-bubble" id="compBubble">🐰 Tekan tombol untuk dapat pujian dari kelinci~</div>
+      <button class="big-btn" onclick="giveCompliment()">🌸 Puji Aku Dong! 🌸</button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-bunnies">🐰🐇🐰🐇🐰</div>
+      <div class="footer-text">Dibuat dengan cinta 99% & wortel 1% 🥕💕</div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>

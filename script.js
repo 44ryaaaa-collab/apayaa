@@ -1,129 +1,97 @@
-/* ── Canvas & context ── */
-const canvas = document.getElementById('starCanvas');
-const ctx = canvas.getContext('2d');
+// Floating items
+const floats = ['🌸','💕','🐰','💖','🌷','💗','🐇','✨','🎀','🥕','🌼','💝'];
 
-function resize() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-/* ── Static stars ── */
-const stars = Array.from({ length: 200 }, () => ({
-  x:            Math.random() * window.innerWidth,
-  y:            Math.random() * window.innerHeight,
-  r:            Math.random() * 1.8 + 0.2,
-  alpha:        Math.random(),
-  speed:        Math.random() * 0.02 + 0.005,
-  twinkleOffset: Math.random() * Math.PI * 2,
-}));
-
-/* ── Shooting stars ── */
-const shootingStars = [];
-
-function addShootingStar() {
-  shootingStars.push({
-    x:     Math.random() * window.innerWidth,
-    y:     Math.random() * window.innerHeight * 0.5,
-    len:   Math.random() * 120 + 60,
-    speed: Math.random() * 6 + 4,
-    alpha: 1,
-    angle: Math.PI / 5,
-  });
+function spawnFloat() {
+  const el = document.createElement('div');
+  el.className = 'pop-item';
+  el.textContent = floats[Math.floor(Math.random() * floats.length)];
+  el.style.left = Math.random() * 100 + '%';
+  el.style.fontSize = (12 + Math.random() * 14) + 'px';
+  const dur = 5 + Math.random() * 7;
+  el.style.animationDuration = dur + 's';
+  el.style.animationDelay = Math.random() * 2 + 's';
+  document.getElementById('floatLayer').appendChild(el);
+  setTimeout(() => el.remove(), (dur + 2) * 1000);
 }
 
-setInterval(addShootingStar, 3000);
+setInterval(spawnFloat, 700);
+for (let i = 0; i < 8; i++) spawnFloat();
 
-/* ── Draw loop ── */
-function drawStars(t) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // background gradient
-  const grad = ctx.createRadialGradient(
-    canvas.width / 2, canvas.height / 2, 0,
-    canvas.width / 2, canvas.height / 2, canvas.width * 0.8
-  );
-  grad.addColorStop(0, '#0b1535');
-  grad.addColorStop(1, '#020610');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // twinkling stars
-  stars.forEach(s => {
-    const tw = Math.sin(t * s.speed + s.twinkleOffset) * 0.5 + 0.5;
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 240, ${0.3 + tw * 0.7})`;
-    ctx.fill();
-  });
-
-  // shooting stars
-  for (let i = shootingStars.length - 1; i >= 0; i--) {
-    const ss = shootingStars[i];
-
-    const tail = ctx.createLinearGradient(
-      ss.x, ss.y,
-      ss.x - Math.cos(ss.angle) * ss.len,
-      ss.y - Math.sin(ss.angle) * ss.len
-    );
-    tail.addColorStop(0, `rgba(255, 255, 200, ${ss.alpha})`);
-    tail.addColorStop(1, 'transparent');
-
-    ctx.beginPath();
-    ctx.strokeStyle = tail;
-    ctx.lineWidth   = 2;
-    ctx.moveTo(ss.x, ss.y);
-    ctx.lineTo(
-      ss.x - Math.cos(ss.angle) * ss.len,
-      ss.y - Math.sin(ss.angle) * ss.len
-    );
-    ctx.stroke();
-
-    ss.x     += Math.cos(ss.angle) * ss.speed;
-    ss.y     += Math.sin(ss.angle) * ss.speed;
-    ss.alpha -= 0.015;
-
-    if (ss.alpha <= 0 || ss.x > window.innerWidth) {
-      shootingStars.splice(i, 1);
-    }
+// Sparkle on tap/click
+function doSparkle(x, y) {
+  const sp = ['💕','🌸','✨','🐰','💖','🎀'];
+  for (let i = 0; i < 3; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = sp[Math.floor(Math.random() * sp.length)];
+    s.style.left = (x + (Math.random() - 0.5) * 30) + 'px';
+    s.style.top  = (y + (Math.random() - 0.5) * 30) + 'px';
+    s.style.animationDelay = (i * 0.08) + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 800);
   }
 }
 
-let t = 0;
-(function loop() {
-  drawStars(t);
-  t += 0.03;
-  requestAnimationFrame(loop);
-})();
+document.addEventListener('touchstart', e => {
+  const t = e.touches[0];
+  doSparkle(t.clientX, t.clientY);
+}, { passive: true });
 
-/* ── Button: send love ── */
-function sendLove() {
-  const container = document.getElementById('sparkles');
-  const colors = ['#ffcc00', '#ff6fa8', '#aaccff', '#ffffff'];
+document.addEventListener('click', e => doSparkle(e.clientX, e.clientY));
 
-  for (let i = 0; i < 12; i++) {
-    const sp   = document.createElement('div');
-    sp.className = 'sparkle';
-    const size   = Math.random() * 8 + 4;
+// Quiz
+function quizAns(text, emoji) {
+  document.getElementById('quizEmoji').textContent = emoji;
+  const r = document.getElementById('quizResult');
+  r.textContent = text;
+  r.style.animation = 'none';
+  void r.offsetWidth;
+  r.style.animation = 'popIn 0.4s';
+}
 
-    sp.style.cssText = `
-      width:  ${size}px;
-      height: ${size}px;
-      left: 50%;
-      top:  50%;
-      --dx: ${(Math.random() - 0.5) * 200}px;
-      --dy: ${(Math.random() - 0.5) * 200}px;
-      background: ${colors[Math.floor(Math.random() * colors.length)]};
-      animation-delay: ${Math.random() * 0.3}s;
-    `;
+// Love Meter
+function measureLove() {
+  const bar  = document.getElementById('loveBar');
+  const pct  = document.getElementById('lovePct');
+  const desc = document.getElementById('loveDesc');
+  const val  = Math.floor(Math.random() * 30) + 71;
 
-    container.appendChild(sp);
-    setTimeout(() => sp.remove(), 1200);
+  bar.style.width = val + '%';
+  pct.textContent = val + '%';
+
+  const msgs = [
+    [90, 100, '💖 CINTA PENUH! Kelinci se-dunia ikut senang!'],
+    [71,  89, 'Cintanya meluap-luap! 💕']
+  ];
+  for (const [lo, hi, msg] of msgs) {
+    if (val >= lo && val <= hi) { desc.textContent = msg; break; }
   }
 
-  // spawn extra shooting stars on click
-  addShootingStar();
-  addShootingStar();
-  addShootingStar();
+  pct.style.animation = 'none';
+  void pct.offsetWidth;
+  pct.style.animation = 'popIn 0.5s';
+}
+
+// Compliment Machine
+const compliments = [
+  "🐰 Kamu lebih lucu dari 1000 kelinci dijadikan satu!",
+  "🌸 Senyummu bikin kelinci yang sedih langsung happy!",
+  "💕 Kalau kamu jadi kelinci, pasti paling banyak difoto!",
+  "🥕 Kamu lebih manis dari wortel organik import Belanda!",
+  "🎀 Hidupku sebelum kamu = kandang kosong. Setelah kamu = surga!",
+  "✨ Kamu bersinar lebih terang dari bintang malam!",
+  "🐇 Hop hop hop... langsung ke hatiku tanpa permisi!",
+  "💖 Aku cuma mau lihat kamu terus seumur hidup~",
+  "🌷 Kamu wangi kayak taman bunga tempat kelinci main!",
+  "🐰 Fakta ilmiah: kelinci paling gemas di dunia = kamu!"
+];
+
+let ci = 0;
+function giveCompliment() {
+  const b = document.getElementById('compBubble');
+  b.textContent = compliments[ci % compliments.length];
+  ci++;
+  b.classList.remove('shake');
+  void b.offsetWidth;
+  b.classList.add('shake');
 }
